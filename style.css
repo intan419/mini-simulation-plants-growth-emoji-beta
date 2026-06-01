@@ -323,6 +323,67 @@ button:active {
     width: 100%;
 }
 
+/* ========== PANEL PERKEMBANGAN ========== */
+.development-panel {
+    background: white;
+    border-radius: 20px;
+    padding: 15px 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.development-panel h3 {
+    color: #14532d;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.phase-timeline {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.phase-item {
+    background: #f3f4f6;
+    padding: 8px 12px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 2px solid transparent;
+}
+
+.phase-item:hover {
+    background: #d9f99d;
+    transform: scale(1.05);
+}
+
+.phase-item.active-phase {
+    background: #22c55e;
+    color: white;
+    border-color: #166534;
+    box-shadow: 0 2px 8px rgba(34,197,94,0.4);
+}
+
+.phase-arrow {
+    color: #a3a3a3;
+    font-weight: bold;
+}
+
+.phase-description {
+    background: #f0fdf4;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    color: #166534;
+    text-align: center;
+}
+
 /* ========== RESPONSIVE ========== */
 @media (max-width: 700px) {
     .app-container {
@@ -358,6 +419,9 @@ button:active {
     .petunjuk-card, .capaian-card, .internal-card, .disclaimer-card {
         padding: 10px 15px;
     }
+    
+    .phase-item { font-size: 10px; padding: 4px 8px; }
+    .phase-arrow { font-size: 12px; }
 }
 
 @media (max-width: 480px) {
