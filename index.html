@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌻 Simulator Pertumbuhan & Perkembangan Bunga Matahari</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Judul + Level Pengguna -->
+        <div class="header-title">
+            <h1>🌻 SIMULATOR PERTUMBUHAN & PERKEMBANGAN <br> BUNGA MATAHARI</h1>
+            <div class="level-badge">🎓 Level: SMA / Universitas (Dasar)</div>
+        </div>
+
+        <!-- PETUNJUK PENGGUNAAN (Poin 2) -->
+        <div class="petunjuk-card">
+            <details>
+                <summary>📖 📌 PETUNJUK PENGGUNAAN (Klik untuk buka)</summary>
+                <div class="petunjuk-content">
+                    <p>✅ <strong>Cara pakai:</strong></p>
+                    <ul>
+                        <li>Pilih <strong>MODE NORMAL</strong> (optimal) atau <strong>MODE EKSPERIMEN</strong> (ubah slider sendiri)</li>
+                        <li>Tekan <strong>+5 HARI / -5 HARI</strong> untuk melihat pertumbuhan</li>
+                        <li>Geser <strong>slider</strong> (Air, Cahaya, Suhu, pH, Kelembaban, Dosis Pupuk) → nilai berubah realtime</li>
+                        <li>Ganti <strong>Jenis Pupuk</strong> atau <strong>Musim</strong> untuk melihat pengaruhnya</li>
+                        <li>Tekan <strong>➕ SIMPAN PERLAKUAN INI</strong> untuk membandingkan beberapa skenario dalam 1 grafik</li>
+                        <li>Tekan <strong>🗑️ HAPUS PERBANDINGAN</strong> untuk membersihkan grafik pembanding</li>
+                    </ul>
+                    <p>💡 <strong>Tips:</strong> Tanaman akan mati jika stres > 4.3 (contoh: air <50, suhu >37°C, pH <4.5)</p>
+                </div>
+            </details>
+        </div>
+
+        <!-- CAPAIAN PEMBELAJARAN (Poin 3) -->
+        <div class="capaian-card">
+            <h3>🎯 CAPAIAN PEMBELAJARAN</h3>
+            <p>Setelah menggunakan media ini, pengguna mampu:</p>
+            <ul>
+                <li>🌱 Menjelaskan pengaruh faktor eksternal (air, cahaya, suhu, pH, kelembaban, pupuk, musim) terhadap pertumbuhan tanaman</li>
+                <li>🧬 Menjelaskan peran faktor internal (hormon auksin & giberelin) dalam pertumbuhan dan perkembangan</li>
+                <li>📊 Menganalisis perbandingan beberapa perlakuan dalam satu grafik pertumbuhan</li>
+                <li>🌸 Mengidentifikasi fase perkembangan: biji → kecambah → vegetatif → kuncup → mekar → buah → biji (siklus hidup)</li>
+            </ul>
+        </div>
+
+        <!-- Mode Selector -->
+        <div class="mode-card">
+            <span class="mode-label">🎮 MODE:</span>
+            <select id="modeSelect">
+                <option value="normal">🌿 NORMAL (Optimal)</option>
+                <option value="experiment">🧪 EKSPERIMEN</option>
+            </select>
+        </div>
+
+        <!-- Info & Animasi -->
+        <div class="info-animation">
+            <div class="info-card">
+                <div>📅 HARI: <strong id="dayDisplay">0</strong></div>
+                <div>📏 TINGGI: <strong id="heightDisplay">0</strong> cm</div>
+                <div>🌱 FASE: <strong id="phaseDisplay">🌰 Biji</strong></div>
+            </div>
+            <div class="animation-card" id="animationCard">
+                <div class="sky"></div>
+                <div class="ground"></div>
+                <div class="plant-holder">
+                    <div id="plantEmoji" class="plant-emoji">🌰</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slider Controls -->
+        <div class="sliders-grid" id="slidersGrid">
+            <div class="slider-card">
+                <label>💧 AIR: <span id="waterVal">100</span> mm/hari</label>
+                <input type="range" id="water" min="0" max="200" value="100" step="5">
+            </div>
+            <div class="slider-card">
+                <label>☀️ CAHAYA: <span id="lightVal">80</span> %</label>
+                <input type="range" id="light" min="0" max="100" value="80">
+            </div>
+            <div class="slider-card">
+                <label>🌡️ SUHU: <span id="tempVal">27</span> °C</label>
+                <input type="range" id="temp" min="10" max="40" value="27">
+            </div>
+            <div class="slider-card">
+                <label>🧪 pH TANAH: <span id="phVal">6.5</span></label>
+                <input type="range" id="ph" min="3" max="9" step="0.1" value="6.5">
+            </div>
+            <div class="slider-card">
+                <label>💨 KELEMBABAN: <span id="humVal">60</span> %</label>
+                <input type="range" id="humidity" min="0" max="100" value="60">
+            </div>
+            <div class="slider-card">
+                <label>🌾 PUPUK:</label>
+                <select id="fertilizer">
+                    <option value="none">❌ Tidak pakai</option>
+                    <option value="npk" selected>✅ NPK</option>
+                    <option value="organic">🌿 Organik</option>
+                </select>
+            </div>
+            <div class="slider-card">
+                <label>📊 DOSIS PUPUK: <span id="fertVal">50</span> %</label>
+                <input type="range" id="fertDose" min="0" max="100" value="50">
+            </div>
+            <div class="slider-card">
+                <label>🍂 MUSIM:</label>
+                <select id="season">
+                    <option value="optimal">🌸 Optimal</option>
+                    <option value="kemarau">☀️ Kemarau</option>
+                    <option value="hujan">🌧️ Hujan</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- FAKTOR INTERNAL (Poin 10) -->
+        <div class="internal-card">
+            <h3>🧬 FAKTOR INTERNAL PERTUMBUHAN</h3>
+            <p>🌿 <strong>Hormon Auksin:</strong> Memacu pemanjangan sel & dominansi apikal (efek terlihat pada fase vegetatif).</p>
+            <p>🌱 <strong>Hormon Giberelin:</strong> Memacu pemanjangan batang & pembungaan (simulasi: pupuk NPK meningkatkan efek giberelin hingga +45%).</p>
+            <p>💡 <strong>Simulasi ini menunjukkan</strong> bahwa faktor lingkungan memengaruhi kerja hormon internal.</p>
+        </div>
+
+        <!-- Tombol Navigasi -->
+        <div class="button-group">
+            <button id="prevBtn">◀ -5 HARI</button>
+            <button id="nextBtn">+5 HARI ▶</button>
+            <button id="resetCurrentBtn">🔄 RESET MODE INI</button>
+            <button id="resetOtherBtn">🔁 RESET MODE LAIN</button>
+            <button id="resetAllBtn">🗑️ RESET SEMUA</button>
+            <button id="saveComparisonBtn" style="background:#3b82f6;">➕ SIMPAN PERLAKUAN INI</button>
+            <button id="clearComparisonBtn" style="background:#ef4444;">🗑️ HAPUS PERBANDINGAN</button>
+        </div>
+
+        <!-- Info Panel -->
+        <div class="info-panel">
+            <div class="info-box">
+                <h3>📊 PERLAKUAN</h3>
+                <div id="treatmentInfo">Mode Normal: Parameter optimal</div>
+            </div>
+            <div class="info-box">
+                <h3>🌱 RESPON TANAMAN</h3>
+                <div id="plantInfo">Siap tumbuh 🌱</div>
+            </div>
+        </div>
+
+        <!-- Disclaimers (Poin 5) -->
+        <div class="disclaimer-card">
+            <p>⚠️ <strong>DISCLAIMER JENIS TANAMAN:</strong> Simulasi ini dirancang untuk <strong>BUNGA MATAHARI (<em>Helianthus annuus</em>)</strong> — tanaman <strong>semusim/musiman</strong> (bukan evergreen). Siklus hidup: biji → tumbuh → berbunga → berbuah → mati dalam satu musim. Fase menguning daun & menua terjadi setelah pembentukan biji.</p>
+            <p>📌 <strong>Catatan Ilmiah:</strong> Tanaman evergreen seperti pinus tidak mengalami fase menguning daun secara masif seperti simulasi ini.</p>
+        </div>
+
+        <!-- Grafik -->
+        <div class="chart-container">
+            <canvas id="growthChart"></canvas>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,376 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #d9f99d, #fef08a);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.app-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.2);
+    border-radius: 40px;
+    padding: 25px;
+}
+
+/* ========== HEADER & LEVEL ========== */
+.header-title {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.header-title h1 {
+    color: #14532d;
+    margin-bottom: 8px;
+    font-size: 28px;
+}
+
+.level-badge {
+    background: #14532d;
+    color: white;
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: 40px;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* ========== PETUNJUK CARD ========== */
+.petunjuk-card {
+    background: #fef9e3;
+    border-left: 6px solid #eab308;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+}
+
+.petunjuk-card details summary {
+    font-weight: bold;
+    cursor: pointer;
+    color: #854d0e;
+    font-size: 16px;
+}
+
+.petunjuk-content {
+    margin-top: 12px;
+    padding-left: 20px;
+}
+
+.petunjuk-content ul {
+    margin: 8px 0 8px 20px;
+}
+
+.petunjuk-content li {
+    margin: 5px 0;
+}
+
+/* ========== CAPAIAN CARD ========== */
+.capaian-card {
+    background: #dcfce7;
+    border-radius: 16px;
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    border: 1px solid #86efac;
+}
+
+.capaian-card h3 {
+    color: #166534;
+    margin-bottom: 8px;
+}
+
+.capaian-card ul {
+    margin-left: 20px;
+}
+
+.capaian-card li {
+    margin: 5px 0;
+}
+
+/* ========== FAKTOR INTERNAL CARD ========== */
+.internal-card {
+    background: #f3e8ff;
+    border-radius: 16px;
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    border: 1px solid #d8b4fe;
+}
+
+.internal-card h3 {
+    color: #6b21a5;
+    margin-bottom: 8px;
+}
+
+/* ========== DISCLAIMER CARD ========== */
+.disclaimer-card {
+    background: #ffedd5;
+    border-radius: 16px;
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    border-left: 6px solid #f97316;
+}
+
+/* ========== MODE CARD ========== */
+.mode-card {
+    background: white;
+    border-radius: 50px;
+    padding: 12px 25px;
+    text-align: center;
+    width: fit-content;
+    margin: 0 auto 20px auto;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.mode-label {
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+#modeSelect {
+    padding: 8px 20px;
+    border-radius: 30px;
+    border: 1px solid #ccc;
+    font-weight: 600;
+    background: #f0fdf4;
+    cursor: pointer;
+}
+
+/* ========== INFO & ANIMASI ========== */
+.info-animation {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.info-card {
+    background: white;
+    border-radius: 20px;
+    padding: 20px 30px;
+    text-align: center;
+    min-width: 200px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.info-card div {
+    margin: 8px 0;
+    font-size: 18px;
+}
+
+.animation-card {
+    width: 350px;
+    height: 250px;
+    background: linear-gradient(180deg, #87CEEB 0%, #90EE90 70%);
+    border-radius: 30px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.sky {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: radial-gradient(circle at 30% 40%, #fff9c4, #ffe082);
+}
+
+.ground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: linear-gradient(180deg, #8B5A2B, #5D3A1A);
+    border-radius: 20px 20px 0 0;
+}
+
+.plant-holder {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.plant-emoji {
+    font-size: 70px;
+    filter: drop-shadow(0 8px 12px rgba(0,0,0,0.2));
+    transition: all 0.3s ease;
+    animation: sway 3s infinite ease-in-out;
+}
+
+@keyframes sway {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(4deg); }
+}
+
+@keyframes growAnim {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.plant-emoji.grow-effect {
+    animation: growAnim 0.4s ease-out, sway 3s infinite ease-in-out;
+}
+
+/* ========== SLIDERS GRID ========== */
+.sliders-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.slider-card {
+    background: white;
+    border-radius: 16px;
+    padding: 12px;
+    width: 210px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.slider-card label {
+    font-weight: 500;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.slider-card input, .slider-card select {
+    width: 100%;
+    padding: 6px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+}
+
+/* ========== BUTTON GROUP ========== */
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+button {
+    background: #22c55e;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 40px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Poppins', sans-serif;
+}
+
+button:hover {
+    background: #16a34a;
+    transform: scale(1.02);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* ========== INFO PANEL ========== */
+.info-panel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.info-box {
+    background: white;
+    border-radius: 20px;
+    padding: 18px;
+    width: 340px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.info-box h3 {
+    color: #14532d;
+    margin-bottom: 12px;
+    border-bottom: 2px solid #d9f99d;
+    display: inline-block;
+}
+
+/* ========== CHART ========== */
+.chart-container {
+    background: white;
+    border-radius: 20px;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+#growthChart {
+    max-height: 400px;
+    width: 100%;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 700px) {
+    .app-container {
+        padding: 15px;
+    }
+    
+    .header-title h1 {
+        font-size: 20px;
+    }
+    
+    .slider-card {
+        width: 180px;
+    }
+    
+    .button-group button {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    
+    .info-box {
+        width: 280px;
+    }
+    
+    .info-card div {
+        font-size: 14px;
+    }
+    
+    .animation-card {
+        width: 280px;
+        height: 220px;
+    }
+    
+    .petunjuk-card, .capaian-card, .internal-card, .disclaimer-card {
+        padding: 10px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .button-group button {
+        padding: 6px 10px;
+        font-size: 10px;
+    }
+    
+    .slider-card {
+        width: 160px;
+    }
+    
+    .info-box {
+        width: 250px;
+    }
+}
